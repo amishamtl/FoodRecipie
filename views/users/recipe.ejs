@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Details - Flavour Fusion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --card-header-bg: #007bff;
+      --text-color: #343a40;
+      --link-color: #007bff;
+      --link-hover-color: #0056b3;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+  
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Arial', sans-serif;
+    }
+  
+    .card {
+  background-color: #f0f0f0; /* Light gray background */
+  color: #333333; /* Dark gray text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border: none;
+  border-radius: 12px;
+}
+
+.card-header {
+  background-color: #4A90E2; /* Soft blue background */
+  color: #ffffff; /* White text */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+}
+
+.card-footer {
+  background-color: #4A90E2; /* Same soft blue as header */
+  color: #ffffff; /* White text */
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+}
+
+.card-footer a {
+  color: #007BFF; /* Blue for links */
+  text-decoration: none;
+}
+
+.card-footer a:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+  
+    h1, h4 {
+      color: var(--text-color);
+    }
+  
+    .btn-primary {
+      background-color: #007bff; /* Match with card header */
+      border-color: #007bff;
+    }
+  
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue for hover */
+      border-color: #0056b3;
+      color: #ffffff;
+    }
+  
+    .btn-secondary {
+      background-color:#23476b; /* Subtle gray */
+      color: #ffffff;
+      border: none;
+    }
+  
+    .btn-secondary:hover {
+      background-color:#23476b; /* Darker gray for hover */
+    }
+  
+    .btn-facebook {
+      background-color: #3b5998; /* Facebook blue */
+      color: #ffffff;
+    }
+  
+    .btn-facebook:hover {
+      background-color: #2d4373; /* Darker Facebook blue */
+    }
+  
+    .btn-twitter {
+      background-color: #1da1f2; /* Twitter blue */
+      color: #ffffff;
+    }
+  
+    .btn-twitter:hover {
+      background-color: #1a91da; /* Darker Twitter blue */
+    }
+  
+    .btn-email {
+      background-color: #d14836; /* Email red */
+      color: #ffffff;
+    }
+  
+    .btn-email:hover {
+      background-color: #a83a28; /* Darker email red */
+    }
+  
+    .btn-instagram {
+      background-color: #e4405f; /* Instagram pink */
+      color: #ffffff;
+    }
+  
+    .btn-instagram:hover {
+      background-color: #d63f6c; /* Darker Instagram pink */
+    }
+  
+    .btn-whatsapp {
+      background-color: #25D366; /* WhatsApp green */
+      color: #ffffff;
+    }
+  
+    .btn-whatsapp:hover {
+      background-color: #1b9a59; /* Darker WhatsApp green */
+    }
+  
+    .breadcrumb {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+    }
+  
+    .breadcrumb-item a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
+  
+    .breadcrumb-item.active {
+      color: #6c757d;
+    }
+  
+    .img-fluid {
+      border-radius: 8px;
+    }
+  
+    .share-buttons a {
+      text-align: center;
+      margin-right: 10px;
+    }
+  
+    .form-control {
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+
+
+/* Styling the average rating stars (static display of gray stars) */
+.average-rating-stars .star {
+  font-size: 30px; /* Match the size with rating-stars labels */
+  color: #ccc; /* Gray color for unfilled stars */
+}
+
+/* For filled stars in average rating */
+.average-rating-stars .star.filled {
+  color: #ffcc00; /* Yellow color for filled stars */
+}
+
+/* Optional: Half-filled star effect (for average ratings with decimals) */
+.average-rating-stars .star.half-filled {
+  background: linear-gradient(90deg, #ffcc00 50%, #ccc 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* Submit button styling */
+button.btn-primary {
+  background-color: #23476b; /* Primary button color */
+  border: none;
+  color: white;
+
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Rating stars container */
+.rating-stars {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  /* direction: ltr;  */
+}
+
+/* Hide radio buttons */
+.rating-stars input[type="radio"] {
+  display: none; /* Hide the radio buttons */
+}
+
+/* Styling for stars */
+.rating-stars label {
+  font-size: 2rem;
+  color: lightgray;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+/* Highlight stars when hovered */
+.rating-stars label:hover,
+.rating-stars input[type="radio"]:checked ~ label {
+  color: gold;
+}
+
+/* Highlight all stars to the left of the selected one */
+.rating-stars input[type="radio"]:checked ~ label {
+  color: gold; /* Highlight selected stars */
+}
+
+/* Ensure labels before the selected star are also highlighted */
+.rating-stars input[type="radio"]:checked + label {
+  color: gold;
+}
+
+
+.rating-stars input[type="radio"]:checked ~ label {
+    color: gold;
+}
+
+
+  </style>
+  
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card mb-5">
+          <div class="card-header text-center py-4">
+            <h1><%- recipe.name %></h1>
+          </div>
+          <div class="card-body">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+              </ol>
+            </nav>
+
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <img src="/uploads/<%= recipe.image %>" class="img-fluid" alt="<%- recipe.name %>" loading="lazy">
+              </div>
+              <div class="col-12 col-md-8">
+                <h4>Cooking Instructions</h4>
+                <p><%- recipe.description %></p>
+
+                <h4>Ingredients</h4>
+                <ul class="list-group list-group-flush">
+                  <% recipe.ingredients.forEach(function(ingredient){ %>
+                    <li class="list-group-item"><%= ingredient %></li>
+                  <% }) %>
+                </ul>
+
+               
+                <h4 class="mt-4">Submit Your Rating</h4>
+                <form action="/recipe/<%= recipe._id %>/rate" method="POST">
+                  <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <div class="rating-stars">
+                      <!-- Rating input -->
+                      <input type="radio" id="star1" name="rating" value="5" required />
+                      <label for="star1" title="1 star">&#9733;</label>
+                      
+                      <input type="radio" id="star2" name="rating" value="4" />
+                      <label for="star2" title="2 stars">&#9733;</label>
+                      
+                      <input type="radio" id="star3" name="rating" value="3" />
+                      <label for="star3" title="3 stars">&#9733;</label>
+                      
+                      <input type="radio" id="star4" name="rating" value="2" />
+                      <label for="star4" title="4 stars">&#9733;</label>
+                      
+                      <input type="radio" id="star5" name="rating" value="1" />
+                      <label for="star5" title="5 stars">&#9733;</label>
+
+                      <!-- <input type="radio" id="star2" name="rating" value="2" />
+                      <label for="star2" title="2 stars">&#9733;</label>
+
+                      <input type="radio" id="star3" name="rating" value="3" />
+                      <label for="star3" title="3 stars">&#9733;</label>
+
+                      <input type="radio" id="star4" name="rating" value="4" />
+                      <label for="star4" title="4 stars">&#9733;</label>
+
+                      <input type="radio" id="star5" name="rating" value="5" />
+                      <label for="star5" title="5 stars">&#9733;</label> -->
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">Submit Rating</button>
+                </form>
+
+                
+                <h4 class="mt-4">Average Rating:</h4>
+                <div class="average-rating-stars">
+                  <% for (let i = 1; i <= 5; i++) { %>
+                    <% if (i <= Math.floor(averageRating)) { %>
+                      <span class="star filled">&#9733;</span> <!-- Filled stars -->
+                    <% } else if (i === Math.ceil(averageRating) && averageRating % 1 !== 0) { %>
+                      <span class="star half-filled">&#9733;</span> <!-- Half-filled star -->
+                    <% } else { %>
+                      <span class="star">&#9733;</span> <!-- Empty stars -->
+                    <% } %>
+                  <% } %>
+                </div>
+                
+                <!-- Optional: Display the numeric average as well -->
+                <p><%= averageRating %> / 5</p>
+                
+                
+
+                <h4 class="mt-4">Share this Recipe</h4>
+                <form id="email-share-form">
+                  <div class="form-group">
+                    <label for="email">Recipient Email:</label>
+                    <input type="email" name="recipientEmail" id="email" placeholder="Enter recipient's email" required class="form-control">
+                    <input type="hidden" name="recipeId" value="<%= recipe._id %>">
+                  </div>
+                  <button type="button" onclick="shareRecipe()" class="btn btn-secondary mt-3">Share Recipe</button>
+                </form>
+
+                <div class="share-buttons mt-4">
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=<%= recipe.shareableLink %>" target="_blank" class="btn btn-facebook">
+                    Share on Facebook
+                  </a>
+                  <a href="https://twitter.com/intent/tweet?url=<%= recipe.shareableLink %>&text=Check out this recipe!" target="_blank" class="btn btn-twitter">
+                    Share on Twitter
+                  </a>
+                  <a href="mailto:?subject=Check out this recipe&body=<%= recipe.shareableLink %>" target="_blank" class="btn btn-email">
+                    Share via Email
+                  </a>
+                  <a href="https://www.instagram.com/?url=<%= recipe.shareableLink %>" target="_blank" class="btn btn-instagram">
+                    Share on Instagram
+                  </a>
+                  <a href="https://wa.me/?text=Check out this recipe: <%= recipe.shareableLink %>" target="_blank" class="btn btn-whatsapp">
+                    Share on WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-center py-3">
+            <p>Have questions or suggestions? <a href="/contact">Contact us</a></p>
+            <a href="/contact" class="btn btn-primary mt-3">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function shareRecipe() {
+      const emailData = {
+        recipientEmail: document.getElementById('email').value,
+        recipeId: document.querySelector('input[name="recipeId"]').value
+      };
+
+      fetch('/share-recipe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Recipe shared successfully!");
+        } else {
+          alert("Error sharing recipe.");
+        }
+      })
+      .catch(error => {
+        alert("Error: " + error);
+      });
+    }
+  </script>
+</body>
+</html>

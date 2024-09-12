@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Flavour Fusion</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --card-header-bg: #007bff;
+            --text-color: #343a40;
+            --link-color: #007bff;
+            --link-hover-color: #0056b3;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            border: none;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .card-header {
+            background-color: var(--card-header-bg);
+            color: #ffffff;
+            border-bottom: 1px solid var(--shadow-color);
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-footer {
+            background-color: var(--card-header-bg);
+            color: #ffffff;
+            border-top: 1px solid var(--shadow-color);
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .card-footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .card-footer a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        h3, h4 {
+            color: var(--text-color);
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        ul {
+            color: var(--text-color);
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--link-color);
+            border-color: var(--link-color);
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--link-hover-color);
+            border-color: var(--link-hover-color);
+            color: #ffffff;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+
+        .row {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <h3>About Us</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="mb-4">Welcome to Flavour Fusion</h4>
+                        <p class="mb-4">
+                            At Flavour Fusion, we are passionate about bringing the joy of cooking to everyone. Whether you're
+                            a seasoned chef or just starting out, our collection of diverse and delicious recipes is designed
+                            to inspire and guide you in the kitchen.
+                        </p>
+
+                        <h4 class="mb-3">Our Mission</h4>
+                        <p class="mb-4">
+                            Our mission is to make cooking fun, easy, and accessible for all. We believe that everyone deserves
+                            to enjoy a home-cooked meal, and our goal is to provide you with the tools and inspiration to create
+                            amazing dishes that you and your loved ones will cherish.
+                        </p>
+
+                        <h4 class="mb-3">Why Choose Us?</h4>
+                        <ul class="mb-4">
+                            <li><strong>Extensive Recipe Collection:</strong> From traditional favorites to innovative new dishes, we offer a wide variety of recipes that cater to all tastes and skill levels.</li>
+                            <li><strong>User-Friendly Interface:</strong> Our app is designed to be intuitive and easy to navigate, making it simple to find the perfect recipe for any occasion.</li>
+                            <li><strong>Personalized Recommendations:</strong> Based on your preferences, we provide tailored suggestions to help you discover new and exciting recipes.</li>
+                            <li><strong>Community Driven:</strong> Join our community of food lovers, share your own recipes, and get inspired by others.</li>
+                        </ul>
+
+                        <h4 class="mb-3">Our Story</h4>
+                        <p class="mb-4">
+                            Flavour Fusion was founded in 2024 with a vision to bring people together through the love of food.
+                            What started as a small collection of family recipes has grown into a comprehensive platform that
+                            serves thousands of users worldwide.
+                        </p>
+
+                        <h4 class="mb-3">Join Our Community</h4>
+                        <p>
+                            We invite you to join our community of food enthusiasts. Share your culinary creations, explore new
+                            recipes, and connect with like-minded individuals who share your passion for cooking.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Have questions or suggestions? <a href="/contact">Contact us</a></p>
+                        <a href="/contact" class="btn btn-primary mt-3">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

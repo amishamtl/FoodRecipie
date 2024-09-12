@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Recipe</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        .card {
+            border-radius: 0.75rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background-color: #343a40;
+            color: #ffffff;
+            font-weight: bold;
+            border-bottom: 1px solid #dee2e6;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        .form-control, .form-select {
+            border-radius: 0.375rem;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.125);
+        }
+        .btn-outline-primary {
+            border-radius: 0.375rem;
+        }
+        .btn-success {
+            border-radius: 0.375rem;
+            font-weight: bold;
+        }
+        .ingredientList {
+            margin-top: 1rem;
+        }
+        .ingredientDiv {
+            margin-bottom: 0.5rem;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Add New Recipe</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Recipe Details</h4>
+            </div>
+            <div class="card-body">
+                <form action="/admin/recipes" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Recipe Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter recipe name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-control" name="category" id="category" required>
+                            <option selected disabled>Select Category</option>
+                            <option value="Thai">Thai</option>
+                            <option value="American">American</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Indian">Indian</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter recipe description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredients" class="form-label">Ingredients</label>
+                        <div class="ingredientList">
+                            <div class="ingredientDiv mb-1">
+                                <input type="text" name="ingredients" class="form-control" placeholder="Example: Ice" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="form-label">Recipe Image</label>
+                        <input type="file" class="form-control" name="image" id="image" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Add Recipe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/script.js"></script>
+</body>
+</html>

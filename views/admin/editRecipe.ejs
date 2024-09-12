@@ -1,0 +1,56 @@
+
+<h1 class="my-4">Edit Recipe</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">Update Recipe Details</h4>
+    </div>
+    <div class="card-body">
+        <form action="/admin/recipes/<%= recipe._id %>/edit" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="form-group">
+                <label for="email" >Email</label>
+                <input type="email" name="email" id="email" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label for="name">Recipe Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter recipe name" >
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" name="category" >
+                    <option selected disabled>Select Category</option>
+                    <option value="Thai">Thai</option>
+                    <option value="American">American</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Indian">Indian</option>
+                  </select>
+            </div>
+            <div class="form-group">
+                <label for="description" >Description</label>
+                <textarea name="description" id="description" class="form-control" cols="30" rows="4" ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ingredients" class="form-label">Ingredients</label>
+                <div class="ingredientList">
+                  <div class="ingredeintDiv mb-1">
+                    <input type="text" name="ingredients" class="form-control" placeholder="Example: Ice" >
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="col-12">
+                    <label for="image">Recipe Image</label>
+                    <input type="file" class="form-control" name="image" accept="image/*" >
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Recipe</button>
+        </form>
+    </div>
+</div>

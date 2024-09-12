@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlavourFusion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Custom styling for the navbar toggler icon */
+    .navbar-light .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    /* Custom styles for categories */
+    .category__img {
+  height: 200px; /* Ensures all images are the same size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category__img img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+    .category__img--large {
+      height: 200px;
+    }
+    .nav-link {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+  }
+  .nav-link:hover {
+    color: #007bff; /* Change text color on hover */
+  }
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff; /* Underline effect */
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+  }
+  .nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba%28255, 255, 255, 1%29" stroke-width="2" linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+  }
+
+  .cards-boot>img{
+    height: 200px;
+    width: 100%;
+  }
+  
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom py-3 mb-4">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand">
+      <img src="/img/Screenshot 2024-09-04 200951.png" alt="FlavourFusion Blog" width="150" height="90">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="/about" class="nav-link px-3 link-dark" style="position: relative;">
+            About
+            <span class="hover-effect"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/submit-recipe" class="nav-link px-3 link-dark" style="position: relative;">
+            Submit Recipe
+            <span class="hover-effect"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/contact" class="nav-link px-3 link-dark" style="position: relative;">
+            Contact
+            <span class="hover-effect"></span>
+          </a>
+        
+        
+
+
+        <!-- Conditionally show login/signup or username based on the login status -->
+        <% if ( user != undefined ) { %>
+          <li class="nav-item">
+            <a href="/profile" class="nav-link px-3 link-dark" style="position: relative;">
+              <%= user %>
+              <span class="hover-effect"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link px-3 link-dark" style="position: relative;">
+              Logout
+              <span class="hover-effect"></span>
+            </a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a href="/login" class="nav-link px-3 link-dark" style="position: relative;">
+              Login/Signup
+              <span class="hover-effect"></span>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+
+      <form class="d-flex" method="POST" action="/search">
+        <input class="form-control me-2" type="search" name="searchTerm" placeholder="Search..." aria-label="Search">
+        <button class="btn btn-dark" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+  
+  <!-- Hero Section -->
+  <div class="container mb-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">Huge selection of delicious recipe ideas</h1>
+        <p class="lead">Explore our huge selection of delicious recipes, including easy desserts, vegan and vegetarian meals, pasta, bakes, family-friendly dishes, and gluten-free options.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="/explore-latest" class="btn btn-dark btn-lg">Explore Latest</a>
+          <!-- <a href="/explore-random" class="btn btn-outline-secondary btn-lg">Show Random</a> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="/img/hero-image.png" class="img-fluid" alt="Cooking with FlavourFusion" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Categories Section -->
+  <div class="container py-4">
+    <a href="/categories" target="_blank" style="color: black; text-decoration: none;"><h2>Categories</h2></a>
+    <div class="row g-3">
+      <% if(categories != '') { %>
+        <% categories.forEach(function(category, index) { %>
+          <div class="col-6 col-lg-2 text-center">
+            <div class="card shadow" style="width: 18rem;">
+              <a href="/categories/<%= category.name %>" class="category__link d-block">
+                <img src="img/<%= category.image %>" alt="<%= category.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= category.name %></h5>
+                <p class="card-text">Explore the best recipes in this category.</p>
+                <a href="/categories/<%= category.name %>" class="btn btn-primary">Explore</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+      
+      <!-- View All Categories Card -->
+      <div class="col-6 col-lg-2 text-center">
+        <div class="card shadow" style="width: 18rem;">
+          <a href="/categories" class="category__link d-block">
+            <img src="img/view-all.jpg" alt="View All Categories" loading="lazy" class="card-img-top img-fluid">
+          </a>
+          <div class="card-body">
+            <a href="/categories" class="btn btn-primary">View All</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+  <!-- Recipes Sections -->
+  <section class="container py-4">
+    <h2>Latest Recipes</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if(food.latest && food.latest.length > 0) { %>
+        <% food.latest.forEach(function(recipe, index){ %>
+          <div class="col text-center">
+            <div class="card shadow h-100">
+              <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.name %></h5>
+                <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No items found.</p>
+      <% } %>
+    </div>
+  </section>
+
+
+  <!-- Other Recipe Sections like Thai, American, etc. -->
+  <!-- Thai Recipes Section -->
+  <section class="container py-4">
+    <h2>Thai Recipe</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if(food.thai && food.thai.length > 0) { %>
+        <% food.thai.forEach(function(recipe, index){ %>
+          <div class="col text-center">
+            <div class="card shadow h-100">
+              <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.name %></h5>
+                <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No items found.</p>
+      <% } %>
+    </div>
+  </section>
+
+<!-- American Recipes Section -->
+<section class="container py-4">
+  <h2>American Recipe</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <% if(food.american && food.american.length > 0) { %>
+      <% food.american.forEach(function(recipe, index){ %>
+        <div class="col text-center">
+          <div class="card shadow h-100">
+            <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+              <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><%= recipe.name %></h5>
+              <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+</section>
+
+<!-- Chinese Recipes Section -->
+<section class="container py-4">
+  <h2>Chinese Recipe</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <% if(food.chinese && food.chinese.length > 0) { %>
+      <% food.chinese.forEach(function(recipe, index){ %>
+        <div class="col text-center">
+          <div class="card shadow h-100">
+            <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+              <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><%= recipe.name %></h5>
+              <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+</section>
+
+  <!-- Submit Recipe Section -->
+  <section class="px-4 py-5 text-center">
+    <img src="/img/publish-recipe.png" class="img-fluid mb-4" alt="Publish your recipe for FREE today" width="566" height="208" loading="lazy">
+    <h1 class="display-5 fw-bold">Publish your recipe for FREE today</h1>
+    <p class="lead mb-4">Share your recipes with thousands of people for free.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="/submit-recipe" class="btn btn-dark btn-lg">Submit Recipe</a>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

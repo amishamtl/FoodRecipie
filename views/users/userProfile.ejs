@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+    background-color: #f4f4f9;
+    }
+
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .profile-header img.profile-picture {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .profile-details p {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card profile-container shadow-lg mt-5">
+            <div class="card-body text-center">
+                <div class="profile-header">
+                    <!-- <img src="<%= user.profileImage %>" alt="Profile Picture" class="rounded-circle profile-picture mb-3"> -->
+                    <h2 class="card-title"><%= user.name %></h2>
+                </div>
+                <div class="profile-details text-left mt-4">
+                    <p><strong>Username:</strong> <%= user.name %></p>
+                    <p><strong>Email:</strong> <%= user.email %></p>
+                    <p><strong>PhoneNumber:</strong> <%= user.phoneNumber %></p>
+                    <p><strong>Gender:</strong> <%= user.gender %></p>
+                    <p><strong>Age:</strong> <%= user.age %></p>
+                    
+                </div>
+                <div class="profile-actions mt-4">
+                    
+                    <a href="/logout" class="btn btn-danger mx-2">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

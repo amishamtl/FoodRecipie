@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Categories</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    .cards-boot img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease-in-out;
+    }
+    .nav-link:hover {
+      color: #007bff;
+    }
+    .nav-link::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #007bff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease-in-out;
+    }
+    .nav-link:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .back-arrow {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back to Home Icon Button -->
+  <section class="container py-4">
+    <a href="/" class="btn btn-secondary mb-4">
+      <i class="bi bi-arrow-left back-arrow"></i> <!-- Back Arrow Icon -->
+    </a>
+  </section>
+
+  <!-- Categories Heading -->
+  <section class="container py-4">
+    <h1 class="text-center mb-5">Explore Categories of Recipes</h1>
+  </section>
+
+  <!-- Thai Recipes Section -->
+  <section class="container py-4">
+    <h2>Thai Recipe</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if(food.thai && food.thai.length > 0) { %>
+        <% food.thai.forEach(function(recipe, index){ %>
+          <div class="col text-center">
+            <div class="card shadow h-100">
+              <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.name %></h5>
+                <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No items found.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- American Recipes Section -->
+  <section class="container py-4">
+    <h2>American Recipe</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if(food.american && food.american.length > 0) { %>
+        <% food.american.forEach(function(recipe, index){ %>
+          <div class="col text-center">
+            <div class="card shadow h-100">
+              <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.name %></h5>
+                <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No items found.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- Chinese Recipes Section -->
+  <section class="container py-4">
+    <h2>Chinese Recipe</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if(food.chinese && food.chinese.length > 0) { %>
+        <% food.chinese.forEach(function(recipe, index){ %>
+          <div class="col text-center">
+            <div class="card shadow h-100">
+              <a href="/recipe/<%= recipe._id %>" class="category__link d-block cards-boot">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" class="card-img-top img-fluid">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.name %></h5>
+                <a href="/recipe/<%= recipe._id %>" class="btn btn-primary">View Recipe</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No items found.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

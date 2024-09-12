@@ -1,0 +1,320 @@
+recipe.ejs
+<!-- <% if(recipe != null ) { %>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+    </ol>
+  </nav>
+
+
+  <div class="row">
+
+    <div class="col-12 col-md-4">
+      <img src="/uploads/<%= recipe.image %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- recipe.name %>" loading="lazy">
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12"><h1><%- recipe.name %></h1></div>
+        <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- recipe.category %></div>
+        <div class="col-12" style="white-space: pre-line;">
+          <h4>Cooking Instructions</h4>
+          <%- recipe.description %>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <h4>Ingredients</h4>
+          <ul class="list-group list-group-flush">
+            <% recipe.ingredients.forEach(function(ingredients, index){ %>
+              <li class="list-group-item"><%= ingredients %></li>
+            <% }) %>
+          </ul> 
+        </div>
+      </div>
+    </div>
+  </div>
+<% } else { %>
+  <p>No item found.</p>
+<% } %> -->
+
+
+
+
+
+
+
+
+<% if(recipe != null ) { %>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <img src="/uploads/<%= recipe.image %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- recipe.name %>" loading="lazy">
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12"><h1><%- recipe.name %></h1></div>
+        <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- recipe.category %></div>
+        <div class="col-12" style="white-space: pre-line;">
+          <h4>Cooking Instructions</h4>
+          <%- recipe.description %>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <h4>Ingredients</h4>
+          <ul class="list-group list-group-flush">
+            <% recipe.ingredients.forEach(function(ingredients, index){ %>
+              <li class="list-group-item"><%= ingredients %></li>
+            <% }) %>
+          </ul> 
+        </div>
+      </div>
+
+      <!-- Display the Average Rating -->
+      <div class="row pt-4">
+        <div class="col-12">
+          <h4>Average Rating: <%= averageRating %> / 5</h4>
+        </div>
+      </div>
+
+      <!-- Rating Submission Form -->
+      <div class="row pt-4">
+        <div class="col-12">
+          <h4>Submit Your Rating</h4>
+          <form action="/recipe/<%= recipe._id %>/rate" method="POST">
+            <div class="form-group">
+              <label for="rating">Rating (1 to 5):</label>
+              <select name="rating" id="rating" class="form-control" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit Rating</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+<!-- <% } else { %>
+  <p>No item found.</p>
+<% } %> -->
+
+<% if (recipe && recipe._id) { %>
+  <!-- Existing code to display recipe details -->
+  <h4>Recipe Name: <%= recipe.name %></h4>
+  <!-- Additional code -->
+<% } else { %>
+  <p>Recipe not found.</p>
+<% } %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Details</title>
+  <style>
+    /* Dark Theme Styles */
+/* Dark Theme Styles */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.recipe {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.breadcrumb {
+  background-color: #333;
+}
+
+.breadcrumb-item a {
+  color: #e0e0e0;
+}
+
+.breadcrumb-item.active {
+  color: #b0b0b0;
+}
+
+.img-fluid {
+  border-radius: 8px;
+}
+
+h1, h4 {
+  color: #ffffff;
+}
+
+.list-group-item {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: none;
+}
+
+.btn {
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  color: #ffffff;
+}
+
+.btn-twitter {
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+
+.btn-email {
+  background-color: #d14836;
+  color: #ffffff;
+}
+
+.btn-instagram {
+  background-color: #e4405f;
+  color: #ffffff;
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.share-buttons a {
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="recipe">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+      </ol>
+    </nav>
+
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <img src="/uploads/<%= recipe.image %>" class="img-fluid sticky-top" style="top: 20px;" alt="<%- recipe.name %>" loading="lazy">
+      </div>
+
+      <div class="col-12 col-md-8">
+        <div class="row">
+          <div class="col-12"><h1><%- recipe.name %></h1></div>
+          <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- recipe.category %></div>
+          <div class="col-12" style="white-space: pre-line;">
+            <h4>Cooking Instructions</h4>
+            <%- recipe.description %>
+          </div>
+        </div>
+
+        <div class="row pt-4">
+          <div class="col-12">
+            <h4>Ingredients</h4>
+            <ul class="list-group list-group-flush">
+              <% recipe.ingredients.forEach(function(ingredients, index){ %>
+                <li class="list-group-item"><%= ingredients %></li>
+              <% }) %>
+            </ul> 
+          </div>
+        </div>
+
+        <!-- Display the Average Rating -->
+        <div class="row pt-4">
+          <div class="col-12">
+            <h4>Average Rating: <%= averageRating %> / 5</h4>
+          </div>
+        </div>
+
+        <!-- Rating Submission Form -->
+        <div class="row pt-4">
+          <div class="col-12">
+            <h4>Submit Your Rating</h4>
+            <form action="/recipe/<%= recipe._id %>/rate" method="POST">
+              <div class="form-group">
+                <label for="rating">Rating (1 to 5):</label>
+                <select name="rating" id="rating" class="form-control" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Submit Rating</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Share Buttons -->
+        <div class="row pt-4">
+          <div class="col-12">
+            <h4>Share this Recipe</h4>
+            <div class="share-buttons">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<%= recipe.shareableLink %>" target="_blank" class="btn btn-primary me-2">
+                Share on Facebook
+              </a>
+              <a href="https://twitter.com/intent/tweet?url=<%= recipe.shareableLink %>&text=Check out this recipe!" target="_blank" class="btn btn-info me-2">
+                Share on Twitter
+              </a>
+              <a href="mailto:?subject=Check out this recipe&body=<%= recipe.shareableLink %>" target="_blank" class="btn btn-secondary">
+                Share via Email
+              </a>
+              <a href="https://www.instagram.com/?url=<%= recipe.shareableLink %>" target="_blank" class="btn btn-instagram">
+                Share on Instagram
+              </a>
+              <a href="https://wa.me/?text=Check out this recipe: <%= recipe.shareableLink %>" target="_blank" class="btn btn-whatsapp">
+                Share on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if (recipe && recipe._id) { %>
+      <h4>Recipe Name: <%= recipe.name %></h4>
+    <% } else { %>
+      <p>Recipe not found.</p>
+    <% } %>  
+  </div>
+</body>
+</html>

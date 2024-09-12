@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Latest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.2);
+      --text-muted-color: #6c757d;
+      --btn-primary-bg: #007bff;
+      --btn-primary-hover-bg: #0056b3;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .category__link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .category__img {
+      border-radius: 0.375rem;
+      overflow: hidden;
+      height: 200px;
+      object-fit: cover;
+      background-color: var(--card-bg);
+    }
+
+    .category__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .category__img:hover img {
+      transform: scale(1.05);
+    }
+
+    .text-muted {
+      color: var(--text-muted-color);
+    }
+
+    .no-items {
+      text-align: center;
+      font-size: 1.25rem;
+      color: var(--text-muted-color);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-shadow);
+      box-shadow: 0 4px 8px var(--card-shadow);
+      border-radius: 0.375rem;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      color: var(--text-muted-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-4">
+    <h1 class="pb-4 text-center">Explore Latest</h1>
+
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <% if (recipe && recipe.length > 0) { %>
+        <% recipe.forEach(function(recipe, index) { %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <a href="/recipe/<%= recipe._id %>" class="category__link">
+                <div class="category__img">
+                  <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= recipe.name %></h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="col-12">
+          <p class="no-items">No items found.</p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

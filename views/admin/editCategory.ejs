@@ -1,0 +1,19 @@
+
+<h1 class="my-4">Edit Category</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">Update Category Details</h4>
+    </div>
+    <div class="card-body">
+        <form action="/admin/categories/<%= category._id %>/edit" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="form-group">
+                <label for="name">Category Name</label>
+                <input type="text" class="form-control" id="name" name="categoryName" placeholder="Enter recipe name" >
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Update Category</button>
+        </form>
+    </div>
+</div>
